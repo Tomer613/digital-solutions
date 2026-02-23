@@ -107,6 +107,14 @@ function initStickyNav() {
 
     if (!stickyNav || !hero) return;
 
+    if (typeof IntersectionObserver === 'undefined') {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) stickyNav.classList.add('visible');
+            else stickyNav.classList.remove('visible');
+        });
+        return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) {
@@ -126,6 +134,11 @@ function initScrollReveal() {
 
     if (revealItems.length === 0) return;
 
+    if (typeof IntersectionObserver === 'undefined') {
+        revealItems.forEach(item => item.classList.add('revealed'));
+        return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -143,6 +156,13 @@ function initCounters() {
     const counters = document.querySelectorAll('.stat-number');
 
     if (counters.length === 0) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+        counters.forEach(counter => {
+            counter.textContent = counter.getAttribute('data-target');
+        });
+        return;
+    }
 
     let countersAnimated = false;
 
