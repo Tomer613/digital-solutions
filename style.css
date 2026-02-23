@@ -241,6 +241,27 @@ body {
     box-shadow: 0 0 10px rgba(139, 196, 198, 0.3);
 }
 
+/* --- Language Selector --- */
+.lang-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    /* Note: Since we change direction dynamically, 'right' in RTL means left visual side. */
+    z-index: 100;
+}
+
+.lang-selector select {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 2px solid var(--smart-blue);
+    background-color: transparent;
+    color: var(--smart-blue);
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    outline: none;
+}
+
 /* --- Footer --- */
 footer {
     text-align: center;
