@@ -6,19 +6,21 @@
     --smart-blue: #3f4a8e;
     --smart-bg-light: #fdfbf7;
     --smart-beige-light: #f5eedc;
-    /* Light beige for cards */
     --smart-teal-light: #e6f0f0;
-    /* Light and alive teal for contact */
     --smart-text-dark: #333333;
     --smart-text-light: #ffffff;
 }
 
-/* Base settings and background */
+/* Base settings */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Heebo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -27,18 +29,80 @@ body {
     line-height: 1.6;
 }
 
+/* --- Sticky Navigation --- */
+.sticky-nav {
+    position: fixed;
+    top: -80px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    transition: top 0.4s ease;
+}
+
+.sticky-nav.visible {
+    top: 0;
+}
+
+.sticky-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sticky-nav-logo {
+    height: 36px;
+}
+
+.sticky-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.sticky-nav-links a:not(.btn) {
+    text-decoration: none;
+    color: var(--smart-blue);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.sticky-nav-links a:not(.btn):hover {
+    color: var(--smart-red);
+}
+
+.btn-sm {
+    padding: 8px 24px !important;
+    font-size: 0.9rem !important;
+}
+
 /* --- Hero Section --- */
 .hero {
-    /* Light gradient to make the logo pop */
     background: linear-gradient(135deg, #ffffff, var(--smart-beige-light));
     color: var(--smart-blue);
-    /* Dark text for readability on light background */
     padding: 120px 20px;
     text-align: center;
-    border-bottom-right-radius: 80px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.hero-logo,
+.sticky-nav-logo {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.hero-logo:hover,
+.sticky-nav-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 12px rgba(139, 196, 198, 0.4));
 }
 
 .hero-logo {
@@ -52,7 +116,29 @@ body {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    font-weight: 900;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(135deg, var(--smart-blue), var(--smart-teal), var(--smart-blue));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 100% center;
+    }
 }
 
 .hero p {
@@ -76,6 +162,8 @@ body {
     cursor: pointer;
     font-size: 1.1rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn:hover {
@@ -83,7 +171,6 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Primary Button (Hero CTA) */
 .btn-primary {
     background-color: var(--smart-red);
     color: var(--smart-text-light);
@@ -94,7 +181,6 @@ body {
     color: var(--smart-text-light);
 }
 
-/* Secondary Button (Form Submit - conveys trust and calm) */
 .btn-secondary {
     background: linear-gradient(135deg, var(--smart-teal), var(--smart-blue));
     color: var(--smart-text-light);
@@ -104,18 +190,61 @@ body {
     background: linear-gradient(135deg, var(--smart-blue), var(--smart-teal));
 }
 
+/* Shimmer Effect */
+.shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+/* --- Wave Separator --- */
+.wave-separator {
+    margin-top: -2px;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.wave-separator svg {
+    width: 100%;
+    height: 60px;
+    display: block;
+}
+
+.wave-contact {
+    margin-top: 0;
+    margin-bottom: -2px;
+}
+
 /* --- Services Section (3D Flip Cards) --- */
 .services {
     padding: 80px 20px;
     text-align: center;
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
 }
 
 .services h2 {
     margin-bottom: 50px;
     font-size: 2.5rem;
     color: var(--smart-blue);
+    font-weight: 900;
 }
 
 .services-grid {
@@ -165,15 +294,18 @@ body {
     justify-content: center;
     padding: 25px;
     flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* Front of the card */
+/* Enhanced hover glow on cards */
+.service-card-wrapper:hover .service-card-front {
+    box-shadow: 0 20px 40px rgba(139, 196, 198, 0.25), 0 0 30px rgba(139, 196, 198, 0.1);
+}
+
 .service-card-front {
     background-color: var(--smart-beige-light);
-    /* Light beige background */
     color: var(--smart-blue);
     border-top: 5px solid var(--smart-red);
-    /* Kept the red kick */
     border-bottom: 2px solid var(--smart-beige);
 }
 
@@ -184,7 +316,6 @@ body {
     font-weight: bold;
 }
 
-/* Back of the card */
 .service-card-back {
     background: linear-gradient(135deg, var(--smart-teal), var(--smart-blue));
     color: var(--smart-text-light);
@@ -198,14 +329,148 @@ body {
     font-weight: 500;
 }
 
+/* --- Stats Counter Section --- */
+.stats-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, var(--smart-blue), #2d3570);
+    text-align: center;
+}
+
+.stats-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.stat-item {
+    color: var(--smart-text-light);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    display: inline;
+    background: linear-gradient(135deg, var(--smart-teal), var(--smart-beige));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-plus {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--smart-teal), var(--smart-beige));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* --- Testimonials Section --- */
+.testimonials-section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: var(--smart-bg-light);
+}
+
+.testimonials-section h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--smart-blue);
+    font-weight: 900;
+}
+
+.testimonials-carousel {
+    max-width: 650px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 200px;
+}
+
+.testimonial-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    border-right: 4px solid var(--smart-teal);
+}
+
+.testimonial-card.active {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+}
+
+.testimonial-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--smart-text-dark);
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.testimonial-name {
+    font-weight: 700;
+    color: var(--smart-blue);
+    font-size: 1.05rem;
+}
+
+.testimonial-role {
+    color: var(--smart-teal);
+    font-size: 0.9rem;
+}
+
+.testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--smart-teal);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+}
+
+.dot.active {
+    background: var(--smart-teal);
+    transform: scale(1.2);
+}
+
 /* --- Contact Section --- */
 .contact {
-    /* Alive and refreshing background using teal gradient */
     background: linear-gradient(135deg, #f0f7f7, var(--smart-teal-light));
     padding: 80px 20px;
     text-align: center;
-    border-top-left-radius: 80px;
-    margin-top: 40px;
+    position: relative;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.02);
 }
 
@@ -213,6 +478,7 @@ body {
     margin-bottom: 40px;
     font-size: 2.5rem;
     color: var(--smart-blue);
+    font-weight: 900;
 }
 
 .contact-form {
@@ -229,6 +495,7 @@ body {
     border: 2px solid #ffffff;
     border-radius: 12px;
     font-size: 1rem;
+    font-family: 'Heebo', sans-serif;
     background-color: rgba(255, 255, 255, 0.8);
     transition: all 0.3s;
 }
@@ -241,25 +508,198 @@ body {
     box-shadow: 0 0 10px rgba(139, 196, 198, 0.3);
 }
 
-/* --- Language Selector --- */
+/* Form Success Animation */
+.form-success {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    animation: fade-in-up 0.6s ease;
+}
+
+.form-success.hidden {
+    display: none;
+}
+
+.success-checkmark {
+    margin-bottom: 20px;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: checkmark-circle-draw 0.6s ease-in-out forwards;
+}
+
+.checkmark-check {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: checkmark-check-draw 0.3s ease-in-out 0.4s forwards;
+}
+
+@keyframes checkmark-circle-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes checkmark-check-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-success p {
+    font-size: 1.2rem;
+    color: var(--smart-blue);
+    font-weight: 500;
+}
+
+/* --- Language Selector Custom Dropdown --- */
 .lang-selector {
     position: absolute;
     top: 20px;
-    right: 20px;
-    /* Note: Since we change direction dynamically, 'right' in RTL means left visual side. */
-    z-index: 100;
+    z-index: 10000;
+    width: max-content;
+    direction: ltr;
+    /* Keeps the dropdown layout structurally LTR even if page is RTL */
 }
 
-.lang-selector select {
-    padding: 8px 15px;
+/* RTL: Positioned on the right (same side as text alignment) */
+html[dir="rtl"] .lang-selector {
+    right: 20px;
+    left: auto;
+}
+
+/* LTR: Positioned on the left (same side as text alignment) */
+html[dir="ltr"] .lang-selector {
+    left: 20px;
+    right: auto;
+}
+
+.custom-dropdown {
+    font-family: 'Heebo', sans-serif;
+    user-select: none;
+    width: max-content;
+}
+
+.dropdown-selected {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
     border-radius: 20px;
     border: 2px solid var(--smart-blue);
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
     color: var(--smart-blue);
     font-size: 1rem;
     cursor: pointer;
     font-weight: bold;
-    outline: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.dropdown-selected:hover {
+    background-color: var(--smart-blue);
+    color: white;
+}
+
+.dropdown-selected svg {
+    transition: transform 0.3s ease;
+}
+
+.custom-dropdown.open .dropdown-selected svg {
+    transform: rotate(180deg);
+}
+
+.dropdown-options {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 120px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.custom-dropdown.open .dropdown-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-option {
+    padding: 10px 16px;
+    color: var(--smart-text-dark);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: right;
+}
+
+.dropdown-option:hover {
+    background-color: var(--smart-teal-light);
+}
+
+.dropdown-option.active {
+    color: var(--smart-blue);
+    font-weight: bold;
+    background-color: #f0f7f7;
+}
+
+/* RTL/LTR Dropdown adjustments */
+html[dir="ltr"] .dropdown-option {
+    text-align: left;
+}
+
+/* --- Scroll Reveal --- */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delay for grid items */
+.reveal-item:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.reveal-item:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.reveal-item:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.reveal-item:nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+.reveal-item:nth-child(5) {
+    transition-delay: 0.4s;
 }
 
 /* --- Accessibility Widget --- */
@@ -267,7 +707,6 @@ body {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    /* Floats on the bottom left */
     z-index: 1000;
 }
 
@@ -297,12 +736,10 @@ body {
     border-radius: 12px;
     padding: 15px;
     width: 260px;
-    /* Increased from 220 to 260 to accommodate larger text */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 12px;
-    /* Slightly larger gap between buttons */
     transition: opacity 0.3s ease, visibility 0.3s;
 }
 
@@ -313,7 +750,6 @@ body {
 
 .a11y-menu h3 {
     font-size: 1.4rem;
-    /* Increased from 1.1 */
     color: var(--smart-blue);
     margin-bottom: 10px;
     text-align: center;
@@ -324,11 +760,9 @@ body {
     border: 1px solid var(--smart-beige);
     color: var(--smart-text-dark);
     padding: 12px;
-    /* Larger, more comfortable click area */
     font-size: 1.1rem;
-    /* Clearer text size */
     font-weight: bold;
-    /* Make text bold */
+    font-family: 'Heebo', sans-serif;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -338,16 +772,13 @@ body {
     background-color: var(--smart-teal-light);
 }
 
-/* --- Accessibility States (Toggled by JS) --- */
-
-/* High Contrast Mode: Overriding CSS variables for the whole site */
+/* --- Accessibility States --- */
 body.high-contrast {
     --smart-bg-light: #121212;
     --smart-beige-light: #2a2a2a;
     --smart-teal-light: #1a1a1a;
     --smart-text-dark: #ffffff;
     --smart-blue: #8bc4c6;
-    /* Use light teal instead of dark blue for contrast */
     --smart-red: #ff5252;
 }
 
@@ -356,11 +787,9 @@ body.high-contrast .contact,
 body.high-contrast .service-card-front,
 body.high-contrast .service-card-back {
     background: var(--smart-bg-light);
-    /* Remove gradients in high contrast */
     border-color: #ffffff;
 }
 
-/* Highlight Links Mode - Ignoring buttons */
 body.highlight-links a:not(.btn) {
     background-color: #ffff00 !important;
     color: #000000 !important;
@@ -372,7 +801,6 @@ body.highlight-links a:not(.btn) {
 
 /* --- Floating Decorations --- */
 
-/* === Keyframe Animations === */
 @keyframes float {
 
     0%,
@@ -427,14 +855,13 @@ body.highlight-links a:not(.btn) {
     }
 }
 
-/* === Base floating decoration === */
 .float-deco {
     position: absolute;
     z-index: 1;
     pointer-events: none;
 }
 
-/* === Hero positions (stars + icons) === */
+/* Hero positions */
 .float-pos-1 {
     top: 12%;
     left: 6%;
@@ -483,15 +910,7 @@ body.highlight-links a:not(.btn) {
     animation: float 6s ease-in-out infinite 2s;
 }
 
-/* === Services section === */
-.services {
-    position: relative;
-}
-
-.contact {
-    position: relative;
-}
-
+/* Services section */
 .float-srv-1 {
     top: 50px;
     right: 25px;
@@ -522,7 +941,7 @@ body.highlight-links a:not(.btn) {
     animation: drift 10s ease-in-out infinite 1.5s;
 }
 
-/* === Contact section === */
+/* Contact section */
 .float-contact-1 {
     top: 15%;
     right: 8%;
@@ -541,27 +960,11 @@ body.highlight-links a:not(.btn) {
     animation: twinkle 5s ease-in-out infinite 0.5s;
 }
 
-/* === Footer === */
-footer {
-    position: relative;
-    overflow: hidden;
-}
-
+/* Footer */
 .float-footer-1 {
     top: 30%;
     right: 40px;
     animation: twinkle 4s ease-in-out infinite;
-}
-
-/* === Responsive === */
-@media (max-width: 600px) {
-    .float-icon {
-        display: none;
-    }
-
-    .float-star {
-        opacity: 0.5;
-    }
 }
 
 /* --- Footer --- */
@@ -570,4 +973,76 @@ footer {
     padding: 30px;
     background-color: var(--smart-blue);
     color: var(--smart-text-light);
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sticky-nav-links a:not(.btn) {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero {
+        padding: 80px 15px;
+    }
+
+    .services h2,
+    .contact h2,
+    .testimonials-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .float-icon {
+        display: none;
+    }
+
+    .float-star {
+        opacity: 0.5;
+    }
+
+    .testimonial-card {
+        padding: 24px;
+    }
+
+    .sticky-nav-links a:not(.btn) {
+        display: none;
+    }
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--smart-bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--smart-teal);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--smart-blue);
 }

@@ -31,7 +31,33 @@ const translations = {
         a11yContrast: "ניגודיות גבוהה",
         a11yLinks: "הדגשת קישורים",
         a11yIncreaseText: "הגדלת טקסט +",
-        a11yDecreaseText: "הקטנת טקסט -"
+        a11yDecreaseText: "הקטנת טקסט -",
+
+        // Stats
+        statsTitle: "במספרים",
+        statProjects: "פרויקטים שהושלמו",
+        statClients: "לקוחות מרוצים",
+        statYears: "שנות ניסיון",
+        statSatisfaction: "שביעות רצון",
+
+        // Testimonials
+        testimonialsTitle: "מה אומרים עלינו",
+        testimonial1Text: '"הצוות של smart. הפך את החזון שלנו למציאות דיגיטלית מרשימה. מקצועיות ברמה הגבוהה ביותר."',
+        testimonial1Name: "יוסי כ.",
+        testimonial1Role: 'מנכ"ל, חברת הייטק',
+        testimonial2Text: '"העיצוב שקיבלנו עלה על כל הציפיות. יצירתיות, דייקנות ושירות חם ואנושי."',
+        testimonial2Name: "רחל ד.",
+        testimonial2Role: "בעלת עסק",
+        testimonial3Text: '"מערכת ה-BI שבנו לנו שינתה לחלוטין את הדרך שבה אנחנו מקבלים החלטות. ממליצים בחום!"',
+        testimonial3Name: "משה ל.",
+        testimonial3Role: 'סמנכ"ל תפעול',
+
+        // Contact
+        contactTitle: "בואו נדבר",
+        formSuccess: "ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.",
+
+        // Footer
+        footerRights: "כל הזכויות שמורות."
     },
     en: {
         dir: "ltr",
@@ -62,7 +88,33 @@ const translations = {
         a11yContrast: "High Contrast",
         a11yLinks: "Highlight Links",
         a11yIncreaseText: "Increase Text +",
-        a11yDecreaseText: "Decrease Text -"
+        a11yDecreaseText: "Decrease Text -",
+
+        // Stats
+        statsTitle: "By the Numbers",
+        statProjects: "Projects Completed",
+        statClients: "Happy Clients",
+        statYears: "Years of Experience",
+        statSatisfaction: "Client Satisfaction",
+
+        // Testimonials
+        testimonialsTitle: "What Our Clients Say",
+        testimonial1Text: '"The smart. team turned our vision into an impressive digital reality. Professionalism at its highest level."',
+        testimonial1Name: "Yossi K.",
+        testimonial1Role: "CEO, Tech Company",
+        testimonial2Text: '"The design we received exceeded all expectations. Creativity, precision, and warm, human service."',
+        testimonial2Name: "Rachel D.",
+        testimonial2Role: "Business Owner",
+        testimonial3Text: '"The BI system they built for us completely changed the way we make decisions. Highly recommend!"',
+        testimonial3Name: "Moshe L.",
+        testimonial3Role: "COO",
+
+        // Contact
+        contactTitle: "Let's Talk",
+        formSuccess: "Message sent successfully! We'll get back to you soon.",
+
+        // Footer
+        footerRights: "All rights reserved."
     },
     fr: {
         dir: "ltr",
@@ -93,7 +145,33 @@ const translations = {
         a11yContrast: "Contraste Élevé",
         a11yLinks: "Mettre en Évidence les Liens",
         a11yIncreaseText: "Agrandir le Texte +",
-        a11yDecreaseText: "Réduire le Texte -"
+        a11yDecreaseText: "Réduire le Texte -",
+
+        // Stats
+        statsTitle: "En Chiffres",
+        statProjects: "Projets Réalisés",
+        statClients: "Clients Satisfaits",
+        statYears: "Années d'Expérience",
+        statSatisfaction: "Satisfaction Client",
+
+        // Testimonials
+        testimonialsTitle: "Ce que Disent Nos Clients",
+        testimonial1Text: '"L\'équipe smart. a transformé notre vision en une réalité numérique impressionnante. Professionnalisme au plus haut niveau."',
+        testimonial1Name: "Yossi K.",
+        testimonial1Role: "PDG, Société Tech",
+        testimonial2Text: '"Le design que nous avons reçu a dépassé toutes les attentes. Créativité, précision et service chaleureux."',
+        testimonial2Name: "Rachel D.",
+        testimonial2Role: "Propriétaire d'Entreprise",
+        testimonial3Text: '"Le système BI qu\'ils ont construit pour nous a complètement changé notre prise de décision. Fortement recommandé!"',
+        testimonial3Name: "Moshe L.",
+        testimonial3Role: "Directeur des Opérations",
+
+        // Contact
+        contactTitle: "Parlons-en",
+        formSuccess: "Message envoyé avec succès! Nous vous répondrons bientôt.",
+
+        // Footer
+        footerRights: "Tous droits réservés."
     },
     yi: {
         dir: "rtl",
@@ -124,6 +202,32 @@ const translations = {
         a11yContrast: "הויכע קאנטראסט",
         a11yLinks: "אונטערשטרייכן לינקס",
         a11yIncreaseText: "פארגרעסערן טעקסט +",
-        a11yDecreaseText: "פארקלענערן טעקסט -"
+        a11yDecreaseText: "פארקלענערן טעקסט -",
+
+        // Stats
+        statsTitle: "אין צאלן",
+        statProjects: "פראיעקטן פארטיק",
+        statClients: "צופרידענע קליענטן",
+        statYears: "יארן דערפארונג",
+        statSatisfaction: "צופרידנהייט",
+
+        // Testimonials
+        testimonialsTitle: "וואס אונזערע קליענטן זאגן",
+        testimonial1Text: '"דער smart. טים האט פארוואנדלט אונזער חזון אין א באאיינדרוקנדע דיגיטאלע רעאליטעט."',
+        testimonial1Name: "יוסי כ.",
+        testimonial1Role: "פירער, טעכנאלאגיע פירמע",
+        testimonial2Text: '"דער דיזיין וואס מיר האבן באקומען האט איבערטראפן אלע ערווארטונגען."',
+        testimonial2Name: "רחל ד.",
+        testimonial2Role: "ביזנעס אייגנטימער",
+        testimonial3Text: '"דער BI סיסטעם וואס זיי האבן געבויט פאר אונז האט לגמרי געענדערט ווי מיר מאכן באשלוסן."',
+        testimonial3Name: "משה ל.",
+        testimonial3Role: "אפעריישאנס דירעקטאר",
+
+        // Contact
+        contactTitle: "לאמיר רעדן",
+        formSuccess: "הודעה ערפאלגרייך געשיקט! מיר וועלן זיך באלד מעלדן.",
+
+        // Footer
+        footerRights: "אלע רעכטן רעזערווירט."
     }
 };
