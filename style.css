@@ -85,13 +85,37 @@ body {
 
 /* --- Hero Section --- */
 .hero {
-    background: linear-gradient(135deg, #ffffff, var(--smart-beige-light));
-    color: var(--smart-blue);
+    background: linear-gradient(-45deg, var(--smart-blue), var(--smart-teal), #c8b27a, #d93a1e);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--smart-text-light);
     padding: 120px 20px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.hero-content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
 }
 
 .hero-logo,
@@ -99,18 +123,24 @@ body {
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.hero-logo:hover,
 .sticky-nav-logo:hover {
     transform: scale(1.05);
     filter: drop-shadow(0 4px 12px rgba(139, 196, 198, 0.4));
 }
 
+.hero-logo:hover {
+    transform: translateX(8%) scale(1.08) translateY(-3px);
+    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.3));
+}
+
 .hero-logo {
-    max-width: 220px;
+    max-width: 400px;
     margin-bottom: 30px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transform: translateX(8%);
+    /* Optically center it since the dot on the right adds invisible weight */
 }
 
 .hero h1 {
@@ -119,26 +149,10 @@ body {
     font-weight: 900;
 }
 
-/* Gradient Text Effect */
+/* Gradient Text Effect removed for white contrast */
 .gradient-text {
-    background: linear-gradient(135deg, var(--smart-blue), var(--smart-teal), var(--smart-blue));
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradient-shift 4s ease infinite;
-}
-
-@keyframes gradient-shift {
-
-    0%,
-    100% {
-        background-position: 0% center;
-    }
-
-    50% {
-        background-position: 100% center;
-    }
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
@@ -147,7 +161,8 @@ body {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    color: var(--smart-text-dark);
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* --- Buttons --- */
@@ -248,13 +263,16 @@ body {
 }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
 }
 
 /* Service card flip wrapper */
 .service-card-wrapper {
+    flex: 1 1 280px;
+    max-width: 350px;
     background-color: transparent;
     width: 100%;
     height: 250px;
@@ -305,8 +323,39 @@ body {
 .service-card-front {
     background-color: var(--smart-beige-light);
     color: var(--smart-blue);
-    border-top: 5px solid var(--smart-red);
     border-bottom: 2px solid var(--smart-beige);
+    overflow: hidden;
+}
+
+.service-card-front::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-size: 200% auto;
+    animation: gradient-shift 4s ease infinite;
+}
+
+.service-card-wrapper:nth-child(1) .service-card-front::before {
+    background-image: linear-gradient(135deg, var(--smart-red), var(--smart-beige), var(--smart-red));
+}
+
+.service-card-wrapper:nth-child(2) .service-card-front::before {
+    background-image: linear-gradient(135deg, var(--smart-teal), var(--smart-blue), var(--smart-teal));
+}
+
+.service-card-wrapper:nth-child(3) .service-card-front::before {
+    background-image: linear-gradient(135deg, var(--smart-blue), var(--smart-red), var(--smart-blue));
+}
+
+.service-card-wrapper:nth-child(4) .service-card-front::before {
+    background-image: linear-gradient(135deg, var(--smart-beige), var(--smart-teal), var(--smart-beige));
+}
+
+.service-card-wrapper:nth-child(5) .service-card-front::before {
+    background-image: linear-gradient(135deg, var(--smart-teal), var(--smart-red), var(--smart-teal));
 }
 
 .service-card-front h3 {
@@ -472,6 +521,20 @@ body {
     text-align: center;
     position: relative;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.contact-logo {
+    max-width: 120px;
+    margin-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+    transition: transform 0.3s ease;
+}
+
+.contact-logo:hover {
+    transform: scale(1.05);
 }
 
 .contact h2 {
