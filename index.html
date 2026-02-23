@@ -111,6 +111,21 @@
         <p>&copy; 2026 smart. כל הזכויות שמורות.</p>
     </footer>
 
+
+    <div class="a11y-widget">
+        <button id="a11y-toggle" class="a11y-toggle" aria-label="Accessibility Menu" title="Accessibility"
+            onclick="toggleA11yMenu()">
+            ♿
+        </button>
+        <div id="a11y-menu" class="a11y-menu hidden">
+            <h3 data-i18n="a11yTitle">הגדרות נגישות</h3>
+            <button class="a11y-btn" onclick="toggleHighContrast()" data-i18n="a11yContrast">ניגודיות גבוהה</button>
+            <button class="a11y-btn" onclick="toggleHighlightLinks()" data-i18n="a11yLinks">הדגשת קישורים</button>
+            <button class="a11y-btn" onclick="changeFontSize(1)" data-i18n="a11yIncreaseText">הגדלת טקסט +</button>
+            <button class="a11y-btn" onclick="changeFontSize(-1)" data-i18n="a11yDecreaseText">הקטנת טקסט -</button>
+        </div>
+    </div>
+
     <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>

@@ -262,6 +262,114 @@ body {
     outline: none;
 }
 
+/* --- Accessibility Widget --- */
+.a11y-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    /* Floats on the bottom left */
+    z-index: 1000;
+}
+
+.a11y-toggle {
+    background-color: var(--smart-blue);
+    color: var(--smart-text-light);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.a11y-toggle:hover {
+    transform: scale(1.1);
+}
+
+.a11y-menu {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    background-color: var(--smart-bg-light);
+    border: 2px solid var(--smart-blue);
+    border-radius: 12px;
+    padding: 15px;
+    width: 260px;
+    /* Increased from 220 to 260 to accommodate larger text */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Slightly larger gap between buttons */
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.a11y-menu.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.a11y-menu h3 {
+    font-size: 1.4rem;
+    /* Increased from 1.1 */
+    color: var(--smart-blue);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.a11y-btn {
+    background-color: var(--smart-beige-light);
+    border: 1px solid var(--smart-beige);
+    color: var(--smart-text-dark);
+    padding: 12px;
+    /* Larger, more comfortable click area */
+    font-size: 1.1rem;
+    /* Clearer text size */
+    font-weight: bold;
+    /* Make text bold */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.a11y-btn:hover {
+    background-color: var(--smart-teal-light);
+}
+
+/* --- Accessibility States (Toggled by JS) --- */
+
+/* High Contrast Mode: Overriding CSS variables for the whole site */
+body.high-contrast {
+    --smart-bg-light: #121212;
+    --smart-beige-light: #2a2a2a;
+    --smart-teal-light: #1a1a1a;
+    --smart-text-dark: #ffffff;
+    --smart-blue: #8bc4c6;
+    /* Use light teal instead of dark blue for contrast */
+    --smart-red: #ff5252;
+}
+
+body.high-contrast .hero,
+body.high-contrast .contact,
+body.high-contrast .service-card-front,
+body.high-contrast .service-card-back {
+    background: var(--smart-bg-light);
+    /* Remove gradients in high contrast */
+    border-color: #ffffff;
+}
+
+/* Highlight Links Mode - Ignoring buttons */
+body.highlight-links a:not(.btn) {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+    text-decoration: underline !important;
+    font-weight: bold !important;
+    padding: 2px 5px !important;
+    border-radius: 4px !important;
+}
+
 /* --- Footer --- */
 footer {
     text-align: center;
