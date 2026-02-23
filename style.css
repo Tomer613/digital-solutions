@@ -1,4 +1,19 @@
-/* Base settings and light background */
+/* --- CSS Variables (Color Palette based on 'smart.' logo) --- */
+:root {
+    --smart-red: #d93a1e;
+    --smart-teal: #8bc4c6;
+    --smart-beige: #c8b27a;
+    --smart-blue: #3f4a8e;
+    --smart-bg-light: #fdfbf7;
+    --smart-beige-light: #f5eedc;
+    /* Light beige for cards */
+    --smart-teal-light: #e6f0f0;
+    /* Light and alive teal for contact */
+    --smart-text-dark: #333333;
+    --smart-text-light: #ffffff;
+}
+
+/* Base settings and background */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,111 +22,229 @@
 }
 
 body {
-    background-color: #fafafa;
-    color: #333;
+    background-color: var(--smart-bg-light);
+    color: var(--smart-text-dark);
     line-height: 1.6;
 }
 
-/* Abstract and colorful hero section */
+/* --- Hero Section --- */
 .hero {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
-    color: white;
-    padding: 100px 20px;
+    /* Light gradient to make the logo pop */
+    background: linear-gradient(135deg, #ffffff, var(--smart-beige-light));
+    color: var(--smart-blue);
+    /* Dark text for readability on light background */
+    padding: 120px 20px;
     text-align: center;
-    border-bottom-right-radius: 50px;
+    border-bottom-right-radius: 80px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.hero-logo {
+    max-width: 220px;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--smart-text-dark);
 }
 
+/* --- Buttons --- */
 .btn {
     display: inline-block;
-    background-color: #fff;
-    color: #6e8efb;
-    padding: 12px 30px;
+    padding: 15px 40px;
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 50px;
     font-weight: bold;
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
     transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Service cards */
+/* Primary Button (Hero CTA) */
+.btn-primary {
+    background-color: var(--smart-red);
+    color: var(--smart-text-light);
+}
+
+.btn-primary:hover {
+    background-color: var(--smart-blue);
+    color: var(--smart-text-light);
+}
+
+/* Secondary Button (Form Submit - conveys trust and calm) */
+.btn-secondary {
+    background: linear-gradient(135deg, var(--smart-teal), var(--smart-blue));
+    color: var(--smart-text-light);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, var(--smart-blue), var(--smart-teal));
+}
+
+/* --- Services Section (3D Flip Cards) --- */
 .services {
-    padding: 60px 20px;
+    padding: 80px 20px;
     text-align: center;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 .services h2 {
-    margin-bottom: 40px;
-    font-size: 2rem;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: var(--smart-blue);
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-.service-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s;
-    border-top: 4px solid #a777e3;
+/* Service card flip wrapper */
+.service-card-wrapper {
+    background-color: transparent;
+    width: 100%;
+    height: 250px;
+    perspective: 1000px;
+    outline: none;
+    cursor: pointer;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-}
-
-/* Contact form */
-.contact {
-    background: white;
-    padding: 60px 20px;
+/* Inner container that actually rotates */
+.service-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
     text-align: center;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* Trigger flip on hover/focus */
+.service-card-wrapper:hover .service-card-inner,
+.service-card-wrapper:focus .service-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Shared styling for front and back faces */
+.service-card-front,
+.service-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    flex-direction: column;
+}
+
+/* Front of the card */
+.service-card-front {
+    background-color: var(--smart-beige-light);
+    /* Light beige background */
+    color: var(--smart-blue);
+    border-top: 5px solid var(--smart-red);
+    /* Kept the red kick */
+    border-bottom: 2px solid var(--smart-beige);
+}
+
+.service-card-front h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    font-weight: bold;
+}
+
+/* Back of the card */
+.service-card-back {
+    background: linear-gradient(135deg, var(--smart-teal), var(--smart-blue));
+    color: var(--smart-text-light);
+    transform: rotateY(180deg);
+}
+
+.service-card-back p {
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* --- Contact Section --- */
+.contact {
+    /* Alive and refreshing background using teal gradient */
+    background: linear-gradient(135deg, #f0f7f7, var(--smart-teal-light));
+    padding: 80px 20px;
+    text-align: center;
+    border-top-left-radius: 80px;
+    margin-top: 40px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.contact h2 {
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--smart-blue);
 }
 
 .contact-form {
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
 .contact-form input,
 .contact-form textarea {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 18px;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
     font-size: 1rem;
-    background-color: #fafafa;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s;
 }
 
-.contact-form .btn {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
-    color: white;
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--smart-teal);
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(139, 196, 198, 0.3);
 }
 
+/* --- Footer --- */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
+    padding: 30px;
+    background-color: var(--smart-blue);
+    color: var(--smart-text-light);
 }
