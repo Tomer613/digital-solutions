@@ -134,13 +134,13 @@ body {
 }
 
 .hero-logo {
-    width: 85%;
+    width: 80%;
     max-width: 400px;
     margin-bottom: 30px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    transform: translateX(8%);
+    transform: translateX(clamp(12px, 5vw, 32px));
     /* Optically center it since the dot on the right adds invisible weight */
 }
 
