@@ -134,6 +134,7 @@ body {
 }
 
 .hero-logo {
+    width: 85%;
     max-width: 400px;
     margin-bottom: 30px;
     display: block;
