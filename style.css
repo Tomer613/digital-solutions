@@ -140,7 +140,7 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    transform: translateX(clamp(12px, 5vw, 32px));
+    transform: translateX(clamp(4px, 3vw, 32px));
     /* Optically center it since the dot on the right adds invisible weight */
 }
 
